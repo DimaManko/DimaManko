@@ -1,31 +1,9 @@
-/* Перед вами программа, которая принимает название товара, цену товара за штуку и количество товара и выводит сообщение в определенном формате с помощью функции calculateTotal с тремя параметрами. Напишите функцию calculateTotal. Используйте интерполяцию.
+/* Попросите пользователя ввести строку. Если длина строки меньше 5 символов, добавьте к строке "!" и выведите результат, иначе добавьте к строке "?" и также выведите результат. */
 
-Sample Input 1:
-
-Майка
-300
-6
-Sample Output 1:
-
-Вы выбрали 6 товаров "Майка" по цене 300 рублей за штуку. Итого: 1800 рублей. */
-
-let name = prompt("Введите название товара");
-let coast = +prompt("Введите цену товара за 1 шт");
-let calculate = +prompt("Введите количество товара");
-
-function calculateTotal(name, coast, calculate) {
-    let output = `Вы выбрали ${calculate} товаров "${name}" по цене ${coast} рублей за штуку. Итого: ${coast * calculate} рублей.`
-    return output;
+let str = prompt('Введите строку');
+if (str.length < 5) {
+    str = str + "!";
+    console.log(str);
+} else {
+    str += "?"
 }
-
-console.log(calculateTotal(name, coast, calculate));
-
-
-const itemName = prompt();
-const itemPrice = Number(prompt());
-const quantity = Number(prompt());
-
-...
-
-const message = calculateTotal(itemName, itemPrice, quantity);
-console.log(message);
