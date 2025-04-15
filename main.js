@@ -1,24 +1,31 @@
-/* Создайте объект budget со свойствами income (доход) и expenses (расходы), значения которых вводятся пользователем и методом calculateProfit, который высчитывает прибыль по следующей формуле:
+/* Перед вами программа, которая принимает название товара, цену товара за штуку и количество товара и выводит сообщение в определенном формате с помощью функции calculateTotal с тремя параметрами. Напишите функцию calculateTotal. Используйте интерполяцию.
 
-Прибыль = доход - расходы
-Если прибыль положительная, программа выводит значение прибыли. Если прибыль равна нулю, программа выводит сообщение о том, что пользователь отработал в ноль. Если прибыль отрицательна, программа выводит насколько пользователь ушел в минус. 
+Sample Input 1:
 
-Используйте интерполяцию для вывода */
+Майка
+300
+6
+Sample Output 1:
 
+Вы выбрали 6 товаров "Майка" по цене 300 рублей за штуку. Итого: 1800 рублей. */
 
-const budget = {
-    calculateProfit(){
-        let sum = this.income - this.expenses;
-        return sum;
-    }
-};
-budget.income = +prompt("Введите доход");
-budget.expenses = +prompt("Введите расходы");
+let name = prompt("Введите название товара");
+let coast = +prompt("Введите цену товара за 1 шт");
+let calculate = +prompt("Введите количество товара");
 
-if (budget.calculateProfit() > 0) {
-    console.log(`Ваша прибыль составляет ${budget.calculateProfit()} рублей`);
-} else if (budget.calculateProfit() === 0) {
-    console.log(`Вы отработали в ноль`);
-} else {
-    console.log(`Вы ушли в минус на ${budget.calculateProfit() *(-1)} рублей`);
+function calculateTotal(name, coast, calculate) {
+    let output = `Вы выбрали ${calculate} товаров "${name}" по цене ${coast} рублей за штуку. Итого: ${coast * calculate} рублей.`
+    return output;
 }
+
+console.log(calculateTotal(name, coast, calculate));
+
+
+const itemName = prompt();
+const itemPrice = Number(prompt());
+const quantity = Number(prompt());
+
+...
+
+const message = calculateTotal(itemName, itemPrice, quantity);
+console.log(message);
