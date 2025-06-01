@@ -1,126 +1,90 @@
-/* Работа с "большими данными"
-В коде есть переменная data с объектом:
+/* Ваша задача — разработать объект character, который используется для создания игровых персонажей. Объект должен поддерживать методы с возможностью chaining, чтобы можно было вызывать их последовательно.
 
+Персонаж должен обладать следующими характеристиками:
 
-Необходимо вывести в консоль объект, в котором будут свойства:
+Имя (name) - имя персонажа.
+Класс (class) — например, "Воин", "Маг", "Лучник".
+Уровень (level) — начальное значение: 1.
+Список навыков (skills) — изначально пустой массив.
+Объект должен поддерживать следующие методы:
 
-name - имя пользователя, например "Иван". +
-address - строка вида "Город, Улица", например "Москва, Красная площадь". +
-friends - массив с именами всех друзей, например ["Мария", "Алексей"]. +
-notifications - массив с уведомлениями, которые активны у пользователя, в порядке их упоминания, например ["email", "push"].
-activityTypes - массив, с уникальными значениями всех типов активностей, в порядке их упоминания, без повторов, например ["workout", "reading"].
+setName(name) — устанавливает имя персонажа.
+setClass(className) — устанавливает класс персонажа.
+addSkill(skill) — добавляет новый навык в массив навыков.
+levelUp() — увеличивает уровень персонажа на 1.
+getSummary() — возвращает строку с описанием персонажа, например: 
+Имя: Артур, Класс: Маг, Уровень: 3, Навыки: Атака огнем и Ледяная стрела
+Пример
+const hero = character
+  .setName("Химмель")
+  .setClass("Воин")
+  .addSkill("Уворот")
+  .addSkill("Прямая атака")
+  .addSkill("Геройская атака")
+  .levelUp()
+  .levelUp()
+  .levelUp();
+
+// Имя: Химмель, Класс: Воин, Уровень: 4, Навыки: Уворот, Прямая атака и Геройская атака
+console.log(hero.getSummary());
+Обратите внимание вывод навыков, вывод зависит от их количества.
+
+Если навыков нет, то необходимо написать просто слово "нет".
+Если навык один, то выводим его.
+Если навыков несколько, тогда необходимо выводить их через запятую, кроме последнего навыка, перед ним ставим "и".
+Подсказка
+Для реализации цепочки методов, нужно возвращать сам объект this из каждого метода, за исключением тех, которые возвращают данные (getSummary).
 Примечание
-В объекте должны все свойства располагаться (либо должны быть записаны) в том же порядке, который указан в задании.*/
+Ничего выводить не нужно, ваша задача - создать объект с правильными методами и свойствами. Проверка будет осуществляться автоматически.
+Никаких проверок на ввод данных делать не нужно.*/
 
-const data = {
-  user: {
-    id: 1,
-    name: "Иван",
-    age: 30,
-    email: "ivan@example.com",
-    address: {
-      street: "Красная площадь",
-      city: "Москва",
-      postalCode: "101000",
-    },
-    hobbies: ["фотография", "путешествия", "чтение"],
-    friends: [
-      {
-        id: 2,
-        name: "Мария",
-        age: 28,
-        interests: ["живопись", "фотография"],
-      },
-      {
-        id: 3,
-        name: "Алексей",
-        age: 32,
-        interests: ["спорт", "музыка", "путешествия"],
-      },
-    ],
+
+const character = {
+  level: 1,
+  skills: [],
+  setName(name) {
+    this.name = name
+    return this;
   },
-  settings: {
-    theme: "dark",
-    notifications: {
-      email: true,
-      sms: false,
-      push: true,
-    },
-    language: "ru",
+  setClass(className) {
+    this.class = className
+    return this;
   },
-  activities: [
-    {
-      type: "workout",
-      date: "2023-10-01",
-      duration: 60,
-      details: {
-        activityType: "бег",
-        distance: 5,
-      },
-    },
-    {
-      type: "reading",
-      date: "2023-10-02",
-      duration: 90,
-      details: {
-        bookTitle: "Война и мир",
-        pagesRead: 50,
-      },
-    },
-  ],
-};
+  addSkill(skill) {
+    this.skills.push(skill);
+    return this;
+  },
+  levelUp() {
+    this.level += 1;
+    return this;
+  },
+  getSummary() {
+        const formatSkills = () => {
+      if (this.skills.length === 0) return 'нет';
+      if (this.skills.length === 1) return this.skills[0];
+      if (this.skills.length === 2) return `${this.skills[0]} и ${this.skills[1]}`;
+      
+      const allExceptLast = this.skills.slice(0, -1).join(', ');
+      const lastSkill = this.skills.at(-1);
+      return `${allExceptLast} и ${lastSkill}`;
+    };
 
-const outputObject = {};
-const arrFrnd = [];
-const notificationsArr = [];
-outputObject.name = data.user.name;
-outputObject.address = data.user.address.city + ", " + data.user.address.street;
-const arrFriends = data.user.friends;
-for (let i = 0; i < arrFriends.length; i++) {
-  arrFrnd.push(arrFriends[i].name);
-}
-outputObject.friends = arrFrnd;
-let keysNotification = Object.keys(data.settings.notifications);
-if (data.settings.notifications.email === true) {
-  for (let i = 0; i < keysNotification.length; i++) {
-    if (keysNotification[i] === "email") {
-      notificationsArr.push(keysNotification[i])
-    }
+    return `Имя: ${this.name}, Класс: ${this.class}, Уровень: ${this.level}, Навыки: ${formatSkills()}`;
   }
-} 
-if (data.settings.notifications.sms === true) {
-    for (let i = 0; i < keysNotification.length; i++) {
-    if (keysNotification[i] === "sms") {
-      notificationsArr.push(keysNotification[i])
-    }
   }
-}
-if (data.settings.notifications.push === true) {
-    for (let i = 0; i < keysNotification.length; i++) {
-    if (keysNotification[i] === "push") {
-      notificationsArr.push(keysNotification[i])
-    }
-  }
-}
-outputObject.notifications = notificationsArr;
-const activitiesSe = data.activities;
 
-function getUniqueTypes(activitiesSe) {
-  const uniqueTypes = [];
+const hero = character
+  .setName("Химмель")
+  .setClass("Воин")
+  .addSkill("Уворот")
+  .addSkill("Прямая атака")
+  .addSkill("Геройская атака")
+  .levelUp()
+  .levelUp()
+  .levelUp();
+  console.log(character);
+  console.log(hero.getSummary());
   
-  for (const activity of activitiesSe) {
-    if (!uniqueTypes.includes(activity.type)) {
-      uniqueTypes.push(activity.type);
-    }
-  }
-  
-  return uniqueTypes;
-}
-outputObject.activityTypes = getUniqueTypes(activitiesSe);
-console.log(outputObject);
-
-
-
 
 
 
