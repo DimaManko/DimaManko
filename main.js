@@ -1,31 +1,30 @@
-/* Превращаем массив в объект
-Необходимо реализовать функцию transformArrToObject, которая из массива сделает объект.
+/* Необходимо реализовать функцию, в которую будет передаваться произвольная строка.
 
-Массив будет содержать элементы, в виде объектов, с названием свойства и значением.
+Функции необходимо вернуть самый часто повторяемый символ в строке (регистронезависимо).
 
-Необходимо в функции создать один единый объект, со всеми указанными свойствами и значениями.
+Если несколько символов набрали одинаковое количество упоминаний, нужно вернуть любой из них.
+ */
 
-function transformArrToObject(arr) {
+
+function getFrequentlyRepeatedSymbol(str) {
   // Ваш код здесь
-}
-
-
-
-console.log(transformArrToObject(arr)); // {name: 'Анатолий', age: 40}
-Примечание
-Задание необходимо выполнить самостоятельно, в своем проекте.
-Проверить решение можно по видео в следующем шаге. */
-
-const arr = [
-  {name: 'name', value: 'Анатолий'}, 
-  {name: 'age', value: 40},
-];
-
-function transformArrToObject(arr) {
-  const obj = {};
-  for (let i = 0; i < arr.length; i++) {
-    obj[arr[i]['name']] = arr[i]['value'];
+  const charCounts = {};
+  for (const char of str) {
+    charCounts[char] = (charCounts[char] || 0) + 1;
   }
-  return obj;
+  let mostChar = '';
+  let maxCount = 0;
+  for (const char in charCounts) {
+  if (charCounts[char] > maxCount) {
+    mostChar = char;
+    maxCount = charCounts[char];
+  }
 }
-console.log(transformArrToObject(arr));
+return mostChar;
+}
+console.log(getFrequentlyRepeatedSymbol("кодили-кодили, да ненакодили")); // и
+console.log(
+  getFrequentlyRepeatedSymbol(
+    "Карл у Клары украл кораллы, Клара у Карла украла кларнет"
+  )
+); // а
