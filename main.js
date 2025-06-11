@@ -36,78 +36,31 @@ const favoriteBooks = [
   },
 ]
 
-const names = ["John", "Alice", "James", "Julia"];
-// Ваш код здесь
-const lines = names.filter((name) => name.startsWith("J")).map(name => name.length)
-
-const data = [-2, 4, -1, 5, 0];
-// Ваш код здесь
-const res = data.filter(data => data >=0).map(data => data * 2);
-
-const fruits = ["apple", "kiwi", "banana", "pear"];
-// Ваш код здесь
-const result = fruits.filter(fruit => fruit.length > 3).map(fruit => fruit.toLocaleUpperCase());
 
 
 
+const printBook = (book) => {
+  for (let i = 0; i < book.length; i++) {
+    console.log(book[i].author);
+  }
+}
 
+const printCheapBook = (book) => {
+  for (let i = 0; i < book.length; i++) {
+    if (book[i].price < 30) {
+      console.log(`Стоимость книги: ${book[i].price}`)
+    }
+  }
+}
 
+printCheapBook(favoriteBooks);
 
-/* Запросите у пользователя ввод названий столиц через пробел и поместите их в массив. Если массив содержит элемент "Андорра-Ла-Велла", выведите массив со столицами, которые заканчиваются на букву "а". Если не содержит - выведите массив со столицами, которые заканчиваются на букву "н".
+function processBook(book, doSTWEB) {
+    for (let i = 0; i < book.length; i++) {
+    doSTWEB(book[i]);
+  };
+};
 
-Sample Input 1:
+const logAutor = (book) => console.log(book.author);
 
-Пекин Берлин Бишкек Алжир Канберра Вашингтон Махачкала
-Sample Output 1:
-
-[ 'Пекин', 'Берлин', 'Вашингтон' ] 
-Sample Input 2:
-
-Пекин Берлин Якутск Алжир Андорра-Ла-Велла Вашингтон Махачкала
-Sample Output 2:
-
-[ 'Андорра-Ла-Велла', 'Махачкала' ]
- */
-
-
-let prom = prompt("Введите название столиц через пробел");
-let arr = prom.split(" ");
-if (arr.includes("Андорра-Ла-Велла")) {
-  let arrA = arr.filter(elem => elem.endsWith('а'));
-} else {
-  let arrN = arr.filter(elem => elem.endsWith('н'));
-} 
-
-
-
-
-
-
-/* Запросите у пользователя строковые значения через пробел и поместите их в массив. Используя метод map, создайте новый массив, который будет содержать эти значения, написанные заглавными буквами.
-
-Sample Input 1:
-
-do a barrel roll
-Sample Output 1:
-
-[ 'DO', 'A', 'BARREL', 'ROLL' ]
-Sample Input 2:
-
-смотреть онлайн бесплатно
-Sample Output 2:
-
-[ 'СМОТРЕТЬ', 'ОНЛАЙН', 'БЕСПЛАТНО' ]
-Sample Input 3:
-
-молоко сахар бетон бабушка
-Sample Output 3:
-
-[ 'МОЛОКО', 'САХАР', 'БЕТОН', 'БАБУШКА' ] */
-
-let promp = prompt("Print number with b");
-let array = promp.split(" ");
-let newArray = array.map(elem => elem.toLocaleUpperCase());
-console.log(newArray);
-
-
-
+processBook(favoriteBooks, logAutor)
