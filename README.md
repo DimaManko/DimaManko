@@ -44,9 +44,7 @@ The latest code lives on the [`develop`](https://github.com/DimaManko/multicpa-l
 
 ## Contact
 
-- LinkedIn: `https://www.linkedin.com/in/YOUR-HANDLE/` *(placeholder — replace with your profile URL)*
+- LinkedIn: `https://www.linkedin.com/in/dmitry-manko-273280349/` 
 - GitHub: [DimaManko](https://github.com/DimaManko)
 
-<p>
-  <img src="https://github-readme-stats.vercel.app/api?username=DimaManko&show_icons=true&hide_rank=true&count_private=false" alt="DimaManko GitHub stats" />
-</p>
+
